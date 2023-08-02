@@ -1,0 +1,16 @@
+Idea: Cartoonish game where you pilot an alien spaceship that is slowely 
+decending onto a city where you have to level the buildings with your
+laser weapons or die crashing into a building.
+
+Goal: Destroy as many buildings as possible and safely land.
+
+Space: Human city with many buildings of different heights.
+
+Components: Spaceship, buildings, laser weapons.
+
+Mechanics: Shoot, aim, change charge of weapons, switch directions.
+
+Rules: No control of the decending spaceship except the weapons.
+Weapons controlled using arrow keys.
+Must level enough buildings to land.
+Can switch directions prematurely using space but decends 1 level.
