@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class BuildingSegmentBehaviour : MonoBehaviour
 {
+    public Slider bISlider;
     // Building segment variables.
     [SerializeField] private int buildingIntegrity;
     [SerializeField] private bool freeFall;
-    // Building segment cessible properties.
+    // Building segment acessible properties.
     public bool FreeFall
     {
         get { return freeFall; }
@@ -16,11 +19,18 @@ public class BuildingSegmentBehaviour : MonoBehaviour
     // Constants of the building segment.
     private static readonly float buildingLinearVelocityMax = 2.0f;
 
+    // Set up and display building integrity display.
+    private void Start()
+    {
+        bISlider.maxValue = buildingIntegrity;
+        bISlider.value = buildingIntegrity;
+        bISlider.gameObject.SetActive(false);
+    }
     // Remove the building segment from play when its integrity reaches zero.
     private void Update()
     {
         // Check if building is in freefall.
-        freeFall = IsFreefalling();
+        if (!freeFall) freeFall = CheckFreefalling();
         // Blow up building segment when integrity reaches zero.
         BlowUpBuildingSegment();
     }
@@ -28,12 +38,11 @@ public class BuildingSegmentBehaviour : MonoBehaviour
     // If the building segment is falling or collides with a spaceship, destroy it.
     private void OnCollisionEnter(Collision collision)
     {
-        // Remove all forces on the building segment.
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         // If the building segment is struck by a projectile, reduce integrity by 1 level.
         if (collision.gameObject.CompareTag("Projectile"))
         {
             --buildingIntegrity;
+            if (buildingIntegrity > 0) DisplayBuildingIntegrity();
         }
         // If the building is in free fall ...
         else if (freeFall)
@@ -68,13 +77,18 @@ public class BuildingSegmentBehaviour : MonoBehaviour
     }
 
     // Check the magnitude of the building to determine if it is in freefall or not.
-    private bool IsFreefalling()
+    private bool CheckFreefalling()
     {
         // Once an object starts freefalling, it is forever considered freefalling.
         if (gameObject.GetComponent<Rigidbody>().velocity.magnitude > buildingLinearVelocityMax)
             return true;
-        if (freeFall)
-            return true;
         return false;
+    }
+
+    // Update the integrity bar for the building.
+    private void DisplayBuildingIntegrity()
+    {
+        if (!bISlider.IsActive()) bISlider.gameObject.SetActive(true);
+        bISlider.value = buildingIntegrity;
     }
 }

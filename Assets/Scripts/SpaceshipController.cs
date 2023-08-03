@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
 {
+    // Game manager reference.
+    GameManager gameManager;
     // Variables for controlling the spaceships movement.
     [SerializeField] private Vector3 spaceshipDirection = Vector3.right;
     [SerializeField] private float spaceshipSpeed;
@@ -16,6 +18,12 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private float maxLaserRotation;
     private static readonly float turretOffset = -0.6f;
 
+    private void Start()
+    {
+        // Reference the game manager object for rules and boundaries.
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
+
     // Move the spaceship across the x-axis and take in player inputs to switch directions and shoot.
     private void Update()
     {
@@ -27,6 +35,7 @@ public class SpaceshipController : MonoBehaviour
         FireSpaceshipLaser();
     }
 
+    /*
     // Change directions on hitting game barriers.
     private void OnTriggerEnter(Collider other)
     {
@@ -37,6 +46,7 @@ public class SpaceshipController : MonoBehaviour
             SwitchSpaceshipDirection();
         }
     }
+    */
 
     // Blow up the spaceship when colliding with a building.
     private void OnCollisionEnter(Collision collision)
@@ -56,8 +66,19 @@ public class SpaceshipController : MonoBehaviour
         transform.Translate(spaceshipDirection * Time.deltaTime * spaceshipSpeed);
         // Slowely lower the spaceship over time.
         transform.Translate(Vector3.down * Time.deltaTime * spaceshipDecend);
-        // Switch directions and lower height on player input.
-        if (Input.GetKeyDown(KeyCode.Q))
+        // Switch directions on hitting boundaries.
+        if (transform.position.x >= gameManager.xBoundaries)
+        {
+            transform.position = new Vector3(gameManager.xBoundaries, transform.position.y, transform.position.z);
+            SwitchSpaceshipDirection();
+        }
+        else if (transform.position.x <= -gameManager.xBoundaries)
+        {
+            transform.position = new Vector3(-gameManager.xBoundaries, transform.position.y, transform.position.z);
+            SwitchSpaceshipDirection();
+        }
+        // Switch directions on player input.
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
             SwitchSpaceshipDirection();
         }
