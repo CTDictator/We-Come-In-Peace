@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class BuildingSegmentBehaviour : MonoBehaviour
 {
+    // Reference to the game manager.
+    private GameManager gameManager;
+    // Building segment health.
     public Slider bISlider;
     // Building segment variables.
     [SerializeField] private int buildingIntegrity;
@@ -19,9 +22,10 @@ public class BuildingSegmentBehaviour : MonoBehaviour
     // Constants of the building segment.
     private static readonly float buildingLinearVelocityMax = 2.0f;
 
-    // Set up and display building integrity display.
+    // Set up and display building integrity display as well as game manager reference.
     private void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         bISlider.maxValue = buildingIntegrity;
         bISlider.value = buildingIntegrity;
         bISlider.gameObject.SetActive(false);
@@ -72,6 +76,9 @@ public class BuildingSegmentBehaviour : MonoBehaviour
         // If building segment reaches zero, remove it from play.
         if (buildingIntegrity <= 0)
         {
+            // Add score and remove object.
+            gameManager.Score += 1;
+            gameManager.UpdateScore();
             gameObject.SetActive(false);
         }
     }

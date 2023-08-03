@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpaceshipController : MonoBehaviour
 {
     // Game manager reference.
-    GameManager gameManager;
+    private GameManager gameManager;
     // Variables for controlling the spaceships movement.
     [SerializeField] private Vector3 spaceshipDirection = Vector3.right;
     [SerializeField] private float spaceshipSpeed;
@@ -27,12 +27,15 @@ public class SpaceshipController : MonoBehaviour
     // Move the spaceship across the x-axis and take in player inputs to switch directions and shoot.
     private void Update()
     {
-        // Glide spaceship across the screen.
-        GlideSpaceship();
-        // Aim the spaceships weapon.
-        AimSpaceshipLaser();
-        // Fire the weapon.
-        FireSpaceshipLaser();
+        if (!gameManager.GameOver)
+        {
+            // Glide spaceship across the screen.
+            GlideSpaceship();
+            // Aim the spaceships weapon.
+            AimSpaceshipLaser();
+            // Fire the weapon.
+            FireSpaceshipLaser();
+        }
     }
 
     // Blow up the spaceship when colliding with a building.
@@ -73,7 +76,12 @@ public class SpaceshipController : MonoBehaviour
                 SwitchSpaceshipDirection();
             }
         }
-        // Once the spaceship is on ground level, halt all its movements.
+        // Once the spaceship is on ground level, halt all its movements and declare victory.
+        else
+        {
+            gameManager.GameOver = true;
+            gameManager.CheckIfVictory();
+        }
     }
 
     // Switch the spaceships direction on the x-axis.
@@ -86,6 +94,8 @@ public class SpaceshipController : MonoBehaviour
     private void DestroySpaceship()
     {
         gameObject.SetActive(false);
+        gameManager.GameOver = true;
+        gameManager.CheckIfVictory();
     }
 
     // Aim the spaceships laser weaponry using a laser guide.
