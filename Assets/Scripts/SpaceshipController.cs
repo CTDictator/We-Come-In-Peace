@@ -35,19 +35,6 @@ public class SpaceshipController : MonoBehaviour
         FireSpaceshipLaser();
     }
 
-    /*
-    // Change directions on hitting game barriers.
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the trigger is a barrier.
-        if (other.gameObject.CompareTag("Barrier"))
-        {
-            // Switch directions.
-            SwitchSpaceshipDirection();
-        }
-    }
-    */
-
     // Blow up the spaceship when colliding with a building.
     private void OnCollisionEnter(Collision collision)
     {
@@ -62,26 +49,31 @@ public class SpaceshipController : MonoBehaviour
     // Move the spaceship on screen.
     private void GlideSpaceship()
     {
-        // Move in an direction along the x-axis.
-        transform.Translate(spaceshipDirection * Time.deltaTime * spaceshipSpeed);
-        // Slowely lower the spaceship over time.
-        transform.Translate(Vector3.down * Time.deltaTime * spaceshipDecend);
-        // Switch directions on hitting boundaries.
-        if (transform.position.x >= gameManager.xBoundaries)
+        // Move the spaceship around so long as it is above the ground level.
+        if (transform.position.y > gameManager.groundLevel)
         {
-            transform.position = new Vector3(gameManager.xBoundaries, transform.position.y, transform.position.z);
-            SwitchSpaceshipDirection();
+            // Move in an direction along the x-axis.
+            transform.Translate(spaceshipDirection * Time.deltaTime * spaceshipSpeed);
+            // Slowely lower the spaceship over time.
+            transform.Translate(Vector3.down * Time.deltaTime * spaceshipDecend);
+            // Switch directions on hitting boundaries.
+            if (transform.position.x >= gameManager.xBoundaries)
+            {
+                transform.position = new Vector3(gameManager.xBoundaries, transform.position.y, transform.position.z);
+                SwitchSpaceshipDirection();
+            }
+            else if (transform.position.x <= -gameManager.xBoundaries)
+            {
+                transform.position = new Vector3(-gameManager.xBoundaries, transform.position.y, transform.position.z);
+                SwitchSpaceshipDirection();
+            }
+            // Switch directions on player input.
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SwitchSpaceshipDirection();
+            }
         }
-        else if (transform.position.x <= -gameManager.xBoundaries)
-        {
-            transform.position = new Vector3(-gameManager.xBoundaries, transform.position.y, transform.position.z);
-            SwitchSpaceshipDirection();
-        }
-        // Switch directions on player input.
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SwitchSpaceshipDirection();
-        }
+        // Once the spaceship is on ground level, halt all its movements.
     }
 
     // Switch the spaceships direction on the x-axis.
