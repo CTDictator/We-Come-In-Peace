@@ -1277,7 +1277,7 @@ MonoBehaviour:
     type: 3}
   horizontalInput: 0
   laserRotationSpeed: 180
-  maxLaserRotation: 60
+  maxLaserRotation: 70
 --- !u!4 &1270889262
 Transform:
   m_ObjectHideFlags: 0
@@ -1304,7 +1304,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270889260}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1356,6 +1356,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Building Segment (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275296010158345652, guid: c598e9d573bb343409dac47672fd3d18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6186049821265592598, guid: c598e9d573bb343409dac47672fd3d18,
         type: 3}
@@ -1546,7 +1551,7 @@ GameObject:
   - component: {fileID: 2000371359}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1570,7 +1575,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2000371360
@@ -1632,7 +1637,7 @@ Transform:
   m_GameObject: {fileID: 2000371358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 4, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 0.001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 274704676}
@@ -1650,6 +1655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Building Segment
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275296010158345652, guid: c598e9d573bb343409dac47672fd3d18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6186049821265592598, guid: c598e9d573bb343409dac47672fd3d18,
         type: 3}

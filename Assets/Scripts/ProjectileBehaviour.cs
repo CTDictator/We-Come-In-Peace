@@ -12,4 +12,10 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().AddRelativeForce(0.0f, -projectileSpeed, 0.0f, ForceMode.Impulse);
     }
+
+    // Destroy the projectile on impact.
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+    }
 }

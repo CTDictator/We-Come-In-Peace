@@ -14,7 +14,7 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private float horizontalInput;
     [SerializeField] private float laserRotationSpeed;
     [SerializeField] private float maxLaserRotation;
-    private static readonly float turretOffset = -0.5f;
+    private static readonly float turretOffset = -0.6f;
 
     // Move the spaceship across the x-axis and take in player inputs to switch directions and shoot.
     private void Update()
