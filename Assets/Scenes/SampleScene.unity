@@ -954,7 +954,7 @@ Transform:
   m_GameObject: {fileID: 461282653}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 0.2, y: 10, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 10, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1846685681}
@@ -1273,9 +1273,11 @@ MonoBehaviour:
   spaceshipSpeed: 10
   spaceshipDecend: 0.5
   laserPivot: {fileID: 1846685680}
+  projectile: {fileID: 7178179409817314732, guid: e73a48b66a7604540bd706c40bae9888,
+    type: 3}
   horizontalInput: 0
   laserRotationSpeed: 180
-  maxLaserRotation: 10
+  maxLaserRotation: 60
 --- !u!4 &1270889262
 Transform:
   m_ObjectHideFlags: 0

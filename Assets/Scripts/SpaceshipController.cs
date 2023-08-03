@@ -10,9 +10,11 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private float spaceshipDecend;
     // Variables for the spaceships weapon system.
     public GameObject laserPivot;
+    public GameObject projectile;
     [SerializeField] private float horizontalInput;
     [SerializeField] private float laserRotationSpeed;
     [SerializeField] private float maxLaserRotation;
+    private static readonly float turretOffset = -0.5f;
 
     // Move the spaceship across the x-axis and take in player inputs to switch directions and shoot.
     private void Update()
@@ -21,6 +23,8 @@ public class SpaceshipController : MonoBehaviour
         GlideSpaceship();
         // Aim the spaceships weapon.
         AimSpaceshipLaser();
+        // Fire the weapon.
+        FireSpaceshipLaser();
     }
 
     // Change directions on hitting game barriers.
@@ -53,7 +57,7 @@ public class SpaceshipController : MonoBehaviour
         // Slowely lower the spaceship over time.
         transform.Translate(Vector3.down * Time.deltaTime * spaceshipDecend);
         // Switch directions and lower height on player input.
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             SwitchSpaceshipDirection();
         }
@@ -79,13 +83,27 @@ public class SpaceshipController : MonoBehaviour
         // Convert the inputs into the laser targeter rotation along the z-axis.     
         laserPivot.transform.Rotate(0.0f, 0.0f, horizontalInput);
         // Lock the laser targeters angle if it tries to exceed the maximum rotation.
-        if (laserPivot.transform.rotation.eulerAngles.z > maxLaserRotation)
+        // Euler angles I swear to god ...
+        if (laserPivot.transform.rotation.eulerAngles.z < 360.0f - maxLaserRotation
+            && laserPivot.transform.rotation.eulerAngles.z > 180.0f)
         {
-            // -> CONTINUE HERE.
+            laserPivot.transform.eulerAngles = new Vector3(0.0f, 0.0f, -maxLaserRotation);
         }
-        else if (laserPivot.transform.rotation.eulerAngles.z < -maxLaserRotation)
+        else if (laserPivot.transform.rotation.eulerAngles.z > maxLaserRotation
+            && laserPivot.transform.rotation.eulerAngles.z < 180.0f)
         {
+            laserPivot.transform.eulerAngles = new Vector3(0.0f, 0.0f, maxLaserRotation);
+        }
+    }
 
+    // Fire a laser shot at the angle the targetter is aiming at.
+    private void FireSpaceshipLaser()
+    {
+        // When player hits spacebar, fire a projectile.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 turretPos = new(transform.position.x, transform.position.y + turretOffset, transform.position.z);
+            Instantiate(projectile, turretPos, laserPivot.transform.rotation);
         }
     }
 }
