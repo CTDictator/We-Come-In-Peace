@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
+using TMPro;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -11,18 +11,25 @@ public class MenuUIHandler : MonoBehaviour
 {
     public GameObject pauseScreen;
     public GameObject pauseButton;
+    public TextMeshProUGUI highscoreList;
+    [SerializeField] private string playerName;
+
+    public void Start()
+    {
+        DisplayHighscores();
+    }
 
     // Play the game.
     public void StartNewGame()
     {
-        //MenuManager.instance.playerName = playerName;
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     // Quit.
     public void QuitGame()
     {
-        //MenuManager.instance.SaveHighScore();
+        MenuManager.instance.SaveHighScores();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
@@ -33,7 +40,6 @@ public class MenuUIHandler : MonoBehaviour
     // Return to the game menu.
     public void ReturnToMenu()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
@@ -53,34 +59,32 @@ public class MenuUIHandler : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    // Switch to the highscore scene.
     public void ViewHighscores()
     {
+        // Use the players tag as their name, if any.
+        MenuManager.instance.playerName = playerName;
+        // Update the highscore board if applicable.
+        MenuManager.instance.UpdateHighscore();
         SceneManager.LoadScene(2);
     }
 
-    /*
-    public Text highScoreText;
-    public string playerName;
-
-    private void Start()
-    {
-        DisplayHighScore();
-    }
-
+    // Get the players name after game is over.
     public void GetPlayerName(string name)
     {
         playerName = name;
     }
 
-    public void DisplayHighScore()
+    // Display all the highscores.
+    public void DisplayHighscores()
     {
-        highScoreText.text = $"Best Score : {MenuManager.instance.highestScoringPlayer} :"
-            + $" {MenuManager.instance.highestScore}";
+        if (highscoreList != null)
+        {
+            for (int i = 0; i < MenuManager.highscoreListSize; i++)
+            {
+                highscoreList.text += $"{MenuManager.instance.highestScoringPlayers[i]}\t\t" +
+                    $"{MenuManager.instance.highestScores[i]}\n";
+            }
+        }
     }
-
-    public void ResetHighScore()
-    {
-        MenuManager.instance.ResetHighScore();
-    }
-    */
 }

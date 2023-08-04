@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
         {
             loseText.gameObject.SetActive(true);
         }
+        MenuManager.instance.playerScore = score;
     }
 
     // Display the score of the player for destroying building segments.
