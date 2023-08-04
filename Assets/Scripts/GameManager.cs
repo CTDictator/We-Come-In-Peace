@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI winText;
     public TextMeshProUGUI loseText;
+    public GameObject pauseButton;
+    public GameObject retryPanel;
     // Spaceship limits.
     public GameObject spaceship;
     public readonly float xBoundaries = 14.0f;
@@ -58,6 +60,8 @@ public class GameManager : MonoBehaviour
     // Determine if the player won of lost by checking if the spaceship is intact.
     public void CheckIfVictory()
     {
+        pauseButton.gameObject.SetActive(false);
+        retryPanel.gameObject.SetActive(true);
         // If player has made a landing, display victory.
         if (spaceship.activeInHierarchy)
         {
