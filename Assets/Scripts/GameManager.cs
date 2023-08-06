@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
     public readonly float xBoundaries = 14.0f;
     public readonly float groundLevel = 1.0f;
     // City building ground level spawn points and height.
-    public GameObject buildingSegment;
+    public GameObject[] buildingSegment;
+    public GameObject[] buildingSegmentBase;
     private const int buildingColumns = 10;
     private const int buildingRowMin = 6;
     private const int buildingRowMax = 10;
@@ -47,11 +48,25 @@ public class GameManager : MonoBehaviour
     {
         foreach (Vector3 spawnPoint in buildingSpawnPoints)
         {
+            // Generate a random building height.
             int buildingHeight = Random.Range(buildingRowMin, buildingRowMax + 1);
+            int buildingIndex = Random.Range(0, buildingSegment.Length);
             for (int i = 0; i < buildingHeight; ++i)
             {
-                Instantiate(buildingSegment, new Vector3(spawnPoint.x, spawnPoint.y + i, spawnPoint.z), 
-                    buildingSegment.transform.rotation);
+                // Spawn the default prefab at every level.
+                if (i > 0)
+                {
+                    Instantiate(buildingSegment[buildingIndex],
+                        new Vector3(spawnPoint.x, spawnPoint.y + i, spawnPoint.z),
+                        buildingSegment[buildingIndex].transform.rotation);
+                }
+                // Spawn the base prefab at the bottom.
+                else
+                {
+                    Instantiate(buildingSegmentBase[buildingIndex],
+                        new Vector3(spawnPoint.x, spawnPoint.y + i, spawnPoint.z),
+                        buildingSegmentBase[buildingIndex].transform.rotation);
+                }
             }
         }
         UpdateScore();
