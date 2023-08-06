@@ -1036,7 +1036,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7, z: -15}
+  m_LocalPosition: {x: 0, y: 6.5, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3402,8 +3402,20 @@ MonoBehaviour:
   pauseButton: {fileID: 1117248111}
   retryPanel: {fileID: 2063611437}
   spaceship: {fileID: 1270889260}
-  buildingSegment: {fileID: 3275296010158345652, guid: c598e9d573bb343409dac47672fd3d18,
-    type: 3}
+  buildingSegment:
+  - {fileID: 3275296010158345652, guid: c598e9d573bb343409dac47672fd3d18, type: 3}
+  - {fileID: 3275296010158345652, guid: 604c9e47c1bbe1645958c2116ad9bc3f, type: 3}
+  - {fileID: 3275296010158345652, guid: 8ab8cbbbc5d69e54ea16d7fd94e68d80, type: 3}
+  - {fileID: 3275296010158345652, guid: 1a8bf02b268f54f42a851e51ff1d5df1, type: 3}
+  - {fileID: 3275296010158345652, guid: dd5963c09ac4d9643b2e7e763f63f13c, type: 3}
+  - {fileID: 3275296010158345652, guid: 58f02a59c7a2bd542b8306b4e49ce7e8, type: 3}
+  buildingSegmentBase:
+  - {fileID: 3275296010158345652, guid: ef42ff6d05b201f4b9017d66829afd17, type: 3}
+  - {fileID: 3275296010158345652, guid: 9958cf6797d1aba4ea3e27e843b0b7f5, type: 3}
+  - {fileID: 3275296010158345652, guid: 318f0172e44a9bb479da66a315700d20, type: 3}
+  - {fileID: 3275296010158345652, guid: 849aa3bad0abb6c43977b3ccc3180472, type: 3}
+  - {fileID: 3275296010158345652, guid: 5a22475ff4d14224fa3a83963c89fc1f, type: 3}
+  - {fileID: 3275296010158345652, guid: fc4a2fe79ccc7eb4391a08e38d373a72, type: 3}
 --- !u!1 &1415920977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,11 +4570,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 391248903}
-    - target: {fileID: 4806275603352309559, guid: 983b2a4e93b13f6429b04492e5b337ed,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 462a3f23cfcf5a34e9ad55b87ea91611, type: 2}
     - target: {fileID: 6468636024771640451, guid: 983b2a4e93b13f6429b04492e5b337ed,
         type: 3}
       propertyPath: m_Mesh

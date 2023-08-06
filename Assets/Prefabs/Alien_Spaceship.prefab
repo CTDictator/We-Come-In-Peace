@@ -398,7 +398,7 @@ Transform:
   - {fileID: 1290639443389776537}
   - {fileID: 3057874273716030869}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &191043266760969592
 BoxCollider:
@@ -464,6 +464,7 @@ MonoBehaviour:
   spaceshipSpeed: 5
   spaceshipDecend: 0.3
   laserPivot: {fileID: 4924766572282575418}
+  laserTargeter: {fileID: 6310492848704274993}
   projectile: {fileID: 7178179409817314732, guid: e73a48b66a7604540bd706c40bae9888,
     type: 3}
   horizontalInput: 0
@@ -765,7 +766,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4924766572282575418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -968,8 +969,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6310492848704274993}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 0.3, y: 10, z: 0.3}
+  m_LocalPosition: {x: 0, y: -9.85, z: 0}
+  m_LocalScale: {x: 0.4, y: 10, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3057874273716030869}

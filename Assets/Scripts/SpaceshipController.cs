@@ -12,6 +12,7 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private float spaceshipDecend;
     // Variables for the spaceships weapon system.
     public GameObject laserPivot;
+    public GameObject laserTargeter;
     public GameObject projectile;
     [SerializeField] private float horizontalInput;
     [SerializeField] private float laserRotationSpeed;
@@ -79,6 +80,9 @@ public class SpaceshipController : MonoBehaviour
         // Once the spaceship is on ground level, halt all its movements and declare victory.
         else
         {
+            // Hide the targeter.
+            laserTargeter.SetActive(false);
+            // Declare victory as the player landed.
             gameManager.GameOver = true;
             gameManager.CheckIfVictory();
         }

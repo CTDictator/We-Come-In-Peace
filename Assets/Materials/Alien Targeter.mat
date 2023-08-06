@@ -38,7 +38,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blend_Height: 0
+    - _Ambient_Occlusion: 0
+    - _Blend_Height: 0.1
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
