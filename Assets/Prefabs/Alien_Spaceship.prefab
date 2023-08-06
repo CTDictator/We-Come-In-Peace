@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 4464560284217386768}
   - component: {fileID: 2059122505853890093}
   m_Layer: 0
-  m_Name: Alien Spaceship
+  m_Name: Alien_Spaceship
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
