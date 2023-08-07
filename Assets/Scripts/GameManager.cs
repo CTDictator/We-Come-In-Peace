@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     // Game variables.
     [SerializeField] private bool gameOver;
     [SerializeField] private int score;
+    [SerializeField] private float carSpawnRate;
     public bool GameOver
     {
         get { return gameOver; }
@@ -31,9 +32,12 @@ public class GameManager : MonoBehaviour
     // City building ground level spawn points and height.
     public GameObject[] buildingSegment;
     public GameObject[] buildingSegmentBase;
+    public GameObject[] cars;
     private const int buildingColumns = 10;
     private const int buildingRowMin = 6;
     private const int buildingRowMax = 10;
+    private readonly Vector3 leftCarSpawnPoint = new (-14.0f, 0.0f, -3.5f);
+    private readonly Vector3 rightCarSpawnPoint = new (14.0f, 0.0f, -3.0f);
     private readonly Vector3[] buildingSpawnPoints = new Vector3[buildingColumns]
     {
         new Vector3(-11.25f, 0.5f, -1.5f), new Vector3(-8.75f, 0.5f, -1.5f),
@@ -69,7 +73,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        // Display the starting score.
         UpdateScore();
+        // Spawn cars on either side of the street that get less frequent as more destruction ensues.
+        StartCoroutine(SpawnCars());
     }
 
     // Determine if the player won of lost by checking if the spaceship is intact.
@@ -96,5 +103,30 @@ public class GameManager : MonoBehaviour
     public void UpdateScore()
     {
         scoreText.text = $"Score: {score}";
+    }
+
+    // Spawn cars on both sides of the street.
+    private IEnumerator SpawnCars()
+    {
+        while (true)
+        {
+            // Decide if a car will spawn or not. (75% chance.)
+            bool leftWillSpawn = Random.Range(0, 4) > 0;
+            bool rightWillSpawn = Random.Range(0, 4) > 0;
+            // Spawn a car from the left.
+            yield return new WaitForSeconds(carSpawnRate);
+            if (leftWillSpawn)
+            {
+                int carIndexLeft = Random.Range(0, cars.Length);
+                Instantiate(cars[carIndexLeft], leftCarSpawnPoint, cars[carIndexLeft].transform.rotation);
+            }
+            // Spawn a car from the right.
+            yield return new WaitForSeconds(carSpawnRate);
+            if (rightWillSpawn)
+            {
+                int carIndexRight = Random.Range(0, cars.Length);
+                Instantiate(cars[carIndexRight], rightCarSpawnPoint, Quaternion.Euler(0.0f, 180.0f, 0.0f));
+            }
+        }
     }
 }
