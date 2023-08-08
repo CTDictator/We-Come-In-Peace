@@ -14,6 +14,7 @@ public class SpaceshipController : MonoBehaviour
     public GameObject laserPivot;
     public GameObject laserTargeter;
     public GameObject projectile;
+    public Animator anim;
     [SerializeField] private float horizontalInput;
     [SerializeField] private float laserRotationSpeed;
     [SerializeField] private float maxLaserRotation;
@@ -84,6 +85,7 @@ public class SpaceshipController : MonoBehaviour
             laserTargeter.SetActive(false);
             // Declare victory as the player landed.
             gameManager.GameOver = true;
+            anim.SetTrigger("HasWon");
             gameManager.CheckIfVictory();
         }
     }

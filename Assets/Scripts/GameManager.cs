@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     // Spaceship limits.
     public GameObject spaceship;
     public readonly float xBoundaries = 14.0f;
-    public readonly float groundLevel = 2.0f;
+    public readonly float groundLevel = 1.8f;
     // City building ground level spawn points and height.
     public GameObject[] buildingSegment;
     public GameObject[] buildingSegmentBase;

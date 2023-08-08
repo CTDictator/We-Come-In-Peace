@@ -3396,6 +3396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   score: 0
+  carSpawnRate: 0.12
   scoreText: {fileID: 420062948}
   winText: {fileID: 1415920979}
   loseText: {fileID: 1435565123}
@@ -3416,6 +3417,12 @@ MonoBehaviour:
   - {fileID: 3275296010158345652, guid: 849aa3bad0abb6c43977b3ccc3180472, type: 3}
   - {fileID: 3275296010158345652, guid: 5a22475ff4d14224fa3a83963c89fc1f, type: 3}
   - {fileID: 3275296010158345652, guid: fc4a2fe79ccc7eb4391a08e38d373a72, type: 3}
+  cars:
+  - {fileID: 5925466554099780321, guid: 570df9e5d2146b847a5b40fd362a0126, type: 3}
+  - {fileID: 5925466554099780321, guid: 838a035ca9a53a745be088b8586af346, type: 3}
+  - {fileID: 5925466554099780321, guid: 49b267861cb9bb640bb92460035c47c2, type: 3}
+  - {fileID: 5925466554099780321, guid: 67e35c79e1f622044b1b0f05d7788197, type: 3}
+  - {fileID: 5925466554099780321, guid: 4ec1c297f5ba4fd4cb9dcd45e82d9608, type: 3}
 --- !u!1 &1415920977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4230,6 +4237,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786794494}
   m_CullTransparentMesh: 1
+--- !u!95 &1825231796 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2173316834187707903, guid: 983b2a4e93b13f6429b04492e5b337ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 5976735008234642374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2000371358
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,6 +4518,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2059122505853890093, guid: 983b2a4e93b13f6429b04492e5b337ed,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1825231796}
     - target: {fileID: 2891840374422059280, guid: 983b2a4e93b13f6429b04492e5b337ed,
         type: 3}
       propertyPath: m_Name
