@@ -6,6 +6,7 @@ public class ProjectileBehaviour : MonoBehaviour
 {
     // Projectile variables.
     [SerializeField] private float projectileSpeed;
+    public ParticleSystem explosion;
 
     // When a projectile is instantiated, fire it at high speed.
     void Start()
@@ -17,13 +18,14 @@ public class ProjectileBehaviour : MonoBehaviour
     // Destroy the projectile on impact.
     private void OnCollisionEnter(Collision collision)
     {
+        Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
     // If the projectile doesn't hit anything after some time, destroy it.
     IEnumerator ProjectileExpiration()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }
 }

@@ -15549,6 +15549,12 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1825231796}
+    - target: {fileID: 2059122505853890093, guid: 983b2a4e93b13f6429b04492e5b337ed,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 7251380316795610717, guid: ac12965589dda044695eda77e1439b77,
+        type: 3}
     - target: {fileID: 2891840374422059280, guid: 983b2a4e93b13f6429b04492e5b337ed,
         type: 3}
       propertyPath: m_Name

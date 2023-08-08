@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpaceshipController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class SpaceshipController : MonoBehaviour
     public GameObject laserTargeter;
     public GameObject projectile;
     public Animator anim;
+    public ParticleSystem explosion;
     [SerializeField] private float horizontalInput;
     [SerializeField] private float laserRotationSpeed;
     [SerializeField] private float maxLaserRotation;
@@ -46,6 +48,9 @@ public class SpaceshipController : MonoBehaviour
         // Check if the collision is against a building.
         if (collision.gameObject.CompareTag("Building"))
         {
+            // Spawn an explosion.
+            ParticleSystem theBigOops = Instantiate(explosion, transform.position, transform.rotation);
+            theBigOops.transform.localScale = Vector3.one;
             // Destroy the spaceship.
             DestroySpaceship();
         }
