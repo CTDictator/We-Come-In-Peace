@@ -12,6 +12,8 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private float spaceshipSpeed;
     [SerializeField] private float spaceshipDecend;
     // Variables for the spaceships weapon system.
+    private AudioSource playerAudioSource;
+    public AudioClip laserSound;
     public GameObject laserPivot;
     public GameObject laserTargeter;
     public GameObject projectile;
@@ -26,6 +28,8 @@ public class SpaceshipController : MonoBehaviour
     {
         // Reference the game manager object for rules and boundaries.
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        // Reference to the spaceships audio source.
+        playerAudioSource = GetComponent<AudioSource>();
     }
 
     // Move the spaceship across the x-axis and take in player inputs to switch directions and shoot.
@@ -104,6 +108,7 @@ public class SpaceshipController : MonoBehaviour
     // Destroy the spaceship
     private void DestroySpaceship()
     {
+        gameManager.gameAudio.PlayOneShot(gameManager.wilhelmScreamSound);
         gameObject.SetActive(false);
         gameManager.GameOver = true;
         gameManager.CheckIfVictory();
@@ -138,6 +143,8 @@ public class SpaceshipController : MonoBehaviour
         {
             Vector3 turretPos = new(transform.position.x, transform.position.y + turretOffset, transform.position.z);
             Instantiate(projectile, turretPos, laserPivot.transform.rotation);
+            // Play a laser shot sound.
+            playerAudioSource.PlayOneShot(laserSound);
         }
     }
 }

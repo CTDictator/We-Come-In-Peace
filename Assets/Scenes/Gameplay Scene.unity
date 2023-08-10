@@ -6279,7 +6279,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0.5
   sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
 --- !u!4 &832575519
 Transform:
@@ -10330,6 +10330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370506894}
   - component: {fileID: 1370506895}
+  - component: {fileID: 1370506896}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -10367,6 +10368,10 @@ MonoBehaviour:
   gameOver: 0
   score: 0
   carSpawnRate: 0.12
+  gameAudio: {fileID: 1370506896}
+  explosionSound: {fileID: 8300000, guid: 4f6f72494e41a0f4286abae3638b8a61, type: 3}
+  glassbreakingSound: {fileID: 8300000, guid: c806a35db5744ef49aa8893f882b4c3f, type: 3}
+  wilhelmScreamSound: {fileID: 8300000, guid: f056c97ed3d948946b8acfd4719dd22d, type: 3}
   scoreText: {fileID: 420062948}
   winText: {fileID: 1415920979}
   loseText: {fileID: 1435565123}
@@ -10393,6 +10398,102 @@ MonoBehaviour:
   - {fileID: 5925466554099780321, guid: 49b267861cb9bb640bb92460035c47c2, type: 3}
   - {fileID: 5925466554099780321, guid: 67e35c79e1f622044b1b0f05d7788197, type: 3}
   - {fileID: 5925466554099780321, guid: 4ec1c297f5ba4fd4cb9dcd45e82d9608, type: 3}
+--- !u!82 &1370506896
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370506893}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1389483500
 GameObject:
   m_ObjectHideFlags: 0
@@ -13726,12 +13827,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812541294}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &1825231796 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2173316834187707903, guid: 983b2a4e93b13f6429b04492e5b337ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 5976735008234642374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1827946167
 GameObject:
   m_ObjectHideFlags: 0
@@ -15539,26 +15634,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1445426252344785386, guid: 983b2a4e93b13f6429b04492e5b337ed,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3bb43a0444807104590b3de32ff1de78, type: 2}
-    - target: {fileID: 2059122505853890093, guid: 983b2a4e93b13f6429b04492e5b337ed,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 1825231796}
-    - target: {fileID: 2059122505853890093, guid: 983b2a4e93b13f6429b04492e5b337ed,
-        type: 3}
-      propertyPath: explosion
-      value: 
-      objectReference: {fileID: 7251380316795610717, guid: ac12965589dda044695eda77e1439b77,
-        type: 3}
     - target: {fileID: 2891840374422059280, guid: 983b2a4e93b13f6429b04492e5b337ed,
         type: 3}
       propertyPath: m_Name
       value: Alien Spaceship
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001566303851944482, guid: 983b2a4e93b13f6429b04492e5b337ed,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001566303851944482, guid: 983b2a4e93b13f6429b04492e5b337ed,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3111131034723869107, guid: 983b2a4e93b13f6429b04492e5b337ed,
         type: 3}
@@ -15620,21 +15709,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 391248903}
-    - target: {fileID: 5715627743029255133, guid: 983b2a4e93b13f6429b04492e5b337ed,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3bb43a0444807104590b3de32ff1de78, type: 2}
     - target: {fileID: 6468636024771640451, guid: 983b2a4e93b13f6429b04492e5b337ed,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 391248903}
-    - target: {fileID: 8161501127945139045, guid: 983b2a4e93b13f6429b04492e5b337ed,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3bb43a0444807104590b3de32ff1de78, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

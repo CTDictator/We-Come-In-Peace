@@ -50,6 +50,7 @@ public class BuildingSegmentBehaviour : MonoBehaviour
         {
             --buildingIntegrity;
             if (buildingIntegrity > 0) DisplayBuildingIntegrity();
+            gameManager.gameAudio.PlayOneShot(gameManager.explosionSound);
         }
         // If the building is in free fall ...
         else if (freeFall)
@@ -84,6 +85,8 @@ public class BuildingSegmentBehaviour : MonoBehaviour
         // If building segment reaches zero, remove it from play.
         else if (buildingIntegrity <= 0)
         {
+            // Play destruction sound.
+            gameManager.gameAudio.PlayOneShot(gameManager.glassbreakingSound);
             // Add score and remove object.
             gameManager.Score += 1;
             gameManager.UpdateScore();

@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool gameOver;
     [SerializeField] private int score;
     [SerializeField] private float carSpawnRate;
+    public AudioSource gameAudio;
+    public AudioClip explosionSound;
+    public AudioClip glassbreakingSound;
+    public AudioClip wilhelmScreamSound;
     public bool GameOver
     {
         get { return gameOver; }
@@ -52,6 +56,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (Vector3 spawnPoint in buildingSpawnPoints)
         {
+            // Assign a reference to the audio source.
+            gameAudio = GetComponent<AudioSource>();
             // Generate a random building height.
             int buildingHeight = Random.Range(buildingRowMin, buildingRowMax + 1);
             int buildingIndex = Random.Range(0, buildingSegment.Length);
