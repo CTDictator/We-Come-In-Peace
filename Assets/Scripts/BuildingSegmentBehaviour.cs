@@ -12,6 +12,7 @@ public class BuildingSegmentBehaviour : MonoBehaviour
     // Building segment health.
     public Slider bISlider;
     // Building segment variables.
+    public ParticleSystem buildingCollapseFX;
     [SerializeField] private int buildingIntegrity;
     [SerializeField] private bool freeFall;
     // Building segment acessible properties.
@@ -79,6 +80,7 @@ public class BuildingSegmentBehaviour : MonoBehaviour
             // Add score and remove object.
             gameManager.Score += 1;
             gameManager.UpdateScore();
+            Instantiate(buildingCollapseFX,transform.position, buildingCollapseFX.transform.rotation);
             gameObject.SetActive(false);
         }
     }

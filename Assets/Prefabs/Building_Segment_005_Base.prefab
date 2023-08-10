@@ -1318,6 +1318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bISlider: {fileID: 2106831020533116337}
+  buildingCollapseFX: {fileID: 6444393151243596179, guid: f1b4acd63f526e548aff3887243c6fd5,
+    type: 3}
   buildingIntegrity: 3
   freeFall: 0
 --- !u!1 &3650916978429217894
