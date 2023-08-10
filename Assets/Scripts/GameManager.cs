@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float carSpawnRate;
     public AudioSource gameAudio;
     public AudioClip explosionSound;
-    public AudioClip glassbreakingSound;
+    public AudioClip glassExplosionSound;
     public AudioClip wilhelmScreamSound;
+    public AudioClip glassBreakingSound;
     public bool GameOver
     {
         get { return gameOver; }
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
         UpdateScore();
         // Spawn cars on either side of the street that get less frequent as more destruction ensues.
         StartCoroutine(SpawnCars());
+        // Start the crowd screaming ambience.
     }
 
     // Determine if the player won of lost by checking if the spaceship is intact.

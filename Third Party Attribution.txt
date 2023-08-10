@@ -1,5 +1,9 @@
 Audio: 
-laser_01			B.G.M
-explosion_6055			Pixabay
-wilhelm-1-86895			Pixabay
-glass-breaking-93803		Charlie_Raven
+laser_01					B.G.M
+explosion_6055					Pixabay
+wilhelm-1-86895					Pixabay
+crowdpanic-6442					Pixabay
+city-traffic-outdoor-6414			Pixabay
+an-alien-presence-154528			geoffharvey
+glass-breaking-93803				Charlie_Raven
+mixkit-explosion-and-glass-debris-1701		Mixkit
