@@ -13,7 +13,9 @@ public class BuildingSegmentBehaviour : MonoBehaviour
     public Slider bISlider;
     // Building segment variables.
     public ParticleSystem buildingCollapseFX;
-    [SerializeField] private int buildingIntegrity;
+    public GameObject SmokeFX;
+    private const int buildingIntegrityMax = 3;
+    [SerializeField] private int buildingIntegrity = buildingIntegrityMax;
     [SerializeField] private bool freeFall;
     // Building segment acessible properties.
     public bool FreeFall
@@ -74,8 +76,13 @@ public class BuildingSegmentBehaviour : MonoBehaviour
     // Check the building segments integrity and remove it from play when reaching zero.
     private void BlowUpBuildingSegment()
     {
+        // If building took any damage, make it start smoking.
+        if (!SmokeFX.activeInHierarchy && buildingIntegrity < buildingIntegrityMax)
+        {
+            SmokeFX.SetActive(true);
+        }
         // If building segment reaches zero, remove it from play.
-        if (buildingIntegrity <= 0)
+        else if (buildingIntegrity <= 0)
         {
             // Add score and remove object.
             gameManager.Score += 1;
